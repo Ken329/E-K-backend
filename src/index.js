@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var corsOptions = {
-  origin: process.env.BASE_URL,
+  origin: [process.env.BASE_URL, process.env.DEPLOYED_URL],
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));

@@ -1,14 +1,17 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBTtePx7j6-e1dupCpyoMKb4IYbTxLxR38",
-    authDomain: "emilywken.firebaseapp.com",
-    projectId: "emilywken",
-    storageBucket: "emilywken.appspot.com",
-    messagingSenderId: "403792026882",
-    appId: "1:403792026882:web:dbe66d42181d3ca84c761b",
-    measurementId: "G-PV258L2ML6"
+    apiKey: process.env.DB_API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
