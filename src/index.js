@@ -3,7 +3,6 @@ import cors from "cors";
 import compression from "compression";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
-import multer from 'multer'
 
 import loginRouter from './routes/loginRoute'
 import memoRouter from "./routes/memoRoute";
@@ -20,12 +19,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var corsOptions = {
-  origin: [process.env.BASE_URL, process.env.DEPLOYED_URL],
+  origin: process.env.BASE_URL,
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
-
-const upload = multer({ dest: 'public/uploads/' }).single('file');
 
 app.use('/api', loginRouter);
 app.use('/api', memoRouter);
