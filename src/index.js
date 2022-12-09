@@ -18,11 +18,7 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var corsOptions = {
-  origin: process.env.BASE_URL,
-  optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use('/api', loginRouter);
 app.use('/api', memoRouter);
