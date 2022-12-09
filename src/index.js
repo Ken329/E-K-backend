@@ -3,9 +3,13 @@ import cors from "cors";
 import compression from "compression";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv';
+import multer from 'multer'
 
+import loginRouter from './routes/loginRoute'
 import memoRouter from "./routes/memoRoute";
 import todoRouter from "./routes/todoRoute";
+import reminderRouter from './routes/reminderRoute'
+import memoryRouter from './routes/memoryRoute'
 
 dotenv.config();
 
@@ -21,7 +25,12 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 
+const upload = multer({ dest: 'public/uploads/' }).single('file');
+
+app.use('/api', loginRouter);
 app.use('/api', memoRouter);
 app.use('/api', todoRouter);
+app.use('/api', reminderRouter);
+app.use('/api', memoryRouter);
 
 app.listen(process.env.PORT || 8080, () => console.log(`Listening to port ${process.env.PORT || 8080}`));

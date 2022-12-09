@@ -3,7 +3,7 @@ import db from '../database/firebaseConnectionHandler'
 
 export const getMemo = async () => {
     try {
-        const snapshot = await db.collection('memo').get()
+        const snapshot = await db.firestore().collection('memo').get()
         return snapshot.docs.map(doc => {
             const { updatedAt, createdAt, message } = doc.data()
             return {
@@ -23,7 +23,7 @@ export const createMemo = async (payload) => {
         payload.createdAt = firebase.firestore.FieldValue.serverTimestamp()
         payload.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
 
-        await db.collection('memo').add(payload);
+        await db.firestore().collection('memo').add(payload);
 
         const list = await getMemo()
 
@@ -41,7 +41,7 @@ export const modifyMemo = async (payload) => {
             updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         }
 
-        await db.collection('memo').doc(id).update(updatedData);
+        await db.firestore().collection('memo').doc(id).update(updatedData);
 
         const list = await getMemo()
 
@@ -55,7 +55,7 @@ export const removeMemo = async (payload) => {
     try {
         const { id } = payload
 
-        await db.collection('memo').doc(id).delete();
+        await db.firestore().collection('memo').doc(id).delete();
 
         const list = await getMemo()
 
