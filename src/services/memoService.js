@@ -3,7 +3,7 @@ import db from '../database/firebaseConnectionHandler'
 
 export const getMemo = async () => {
     try {
-        const snapshot = await db.firestore().collection('memo').get()
+        const snapshot = await db.firestore().collection('memo').orderBy('updatedAt', 'desc').get()
         return snapshot.docs.map(doc => {
             const { updatedAt, createdAt, message } = doc.data()
             return {
