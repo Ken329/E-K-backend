@@ -4,6 +4,6 @@ import { loginHandler } from '../handlers/loginHandler';
 
 const router = express.Router();
 
-router.post('/login', loginHandler)
+router.post('/login', loginHandler);
 
 export default router;
