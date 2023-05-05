@@ -8,7 +8,6 @@ import {
 
 export const getMemoList = async (req, res) => {
   try {
-    console.log(req.headers);
     const data = await getMemo();
     successHandler(res, 201, data);
   } catch (error) {
@@ -25,7 +24,6 @@ export const insertMemo = async (req, res) => {
 };
 export const updateMemo = async (req, res) => {
   try {
-    console.log(req.headers);
     const data = await modifyMemo(req.body);
     successHandler(res, 201, data);
   } catch (error) {
